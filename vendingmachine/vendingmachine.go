@@ -5,11 +5,11 @@ type VendingMachine struct {
 	m          map[string]int
 }
 
-func (v VendingMachine) showTotalBalance() int {
+func (v VendingMachine) ShowTotalBalance() int {
 	return v.totalCoins
 }
 
-func (v *VendingMachine) insertCoins(coin string) {
+func (v *VendingMachine) InsertCoins(coin string) {
 	elem := v.m[coin]
 	v.totalCoins += elem
 }
@@ -23,7 +23,7 @@ func NewVendingMachine() VendingMachine {
 	return VendingMachine{m: m}
 }
 
-func (v *VendingMachine) buyDrink(drink string) string {
+func (v *VendingMachine) BuyDrink(drink string) string {
 	m := make(map[string]int)
 	m["SD"] = 18
 	m["CC"] = 12
@@ -38,7 +38,11 @@ func (v *VendingMachine) buyDrink(drink string) string {
 		return "Add more money"
 	}
 	v.totalCoins -= price
-	return drink + v.changeCoins()
+
+	if v.totalCoins == 0 {
+		return drink
+	}
+	return drink + ", " + v.changeCoins()
 }
 
 func (v *VendingMachine) changeCoins() string {
@@ -47,8 +51,11 @@ func (v *VendingMachine) changeCoins() string {
 	coinsText := [4]string{"T", "F", "TW", "O"}
 	for counter := 0; counter < len(coinsValue); counter++ {
 		for v.totalCoins >= coinsValue[counter] {
-			changeCoin += ", " + coinsText[counter]
+			changeCoin += coinsText[counter]
 			v.totalCoins -= coinsValue[counter]
+			if v.totalCoins != 0 {
+				changeCoin += ", "
+			}
 		}
 	}
 	return changeCoin

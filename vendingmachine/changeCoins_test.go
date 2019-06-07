@@ -5,7 +5,7 @@ import (
 )
 
 func TestTotalBalanceIs_1_ShouldChangeCoin_O(t *testing.T) {
-	expectedResult := ", O"
+	expectedResult := "O"
 	v := NewVendingMachine()
 	v.totalCoins = 1
 
@@ -17,7 +17,7 @@ func TestTotalBalanceIs_1_ShouldChangeCoin_O(t *testing.T) {
 }
 
 func TestTotalBalanceIs_2_ShouldChangeCoin_TW(t *testing.T) {
-	expectedResult := ", TW"
+	expectedResult := "TW"
 	v := NewVendingMachine()
 	v.totalCoins = 2
 
@@ -29,7 +29,7 @@ func TestTotalBalanceIs_2_ShouldChangeCoin_TW(t *testing.T) {
 }
 
 func TestTotalBalanceIs_5_ShouldChangeCoin_F(t *testing.T) {
-	expectedResult := ", F"
+	expectedResult := "F"
 	v := NewVendingMachine()
 	v.totalCoins = 5
 
@@ -41,7 +41,7 @@ func TestTotalBalanceIs_5_ShouldChangeCoin_F(t *testing.T) {
 }
 
 func TestTotalBalanceIs_10_ShouldChangeCoin_T(t *testing.T) {
-	expectedResult := ", T"
+	expectedResult := "T"
 	v := NewVendingMachine()
 	v.totalCoins = 10
 
@@ -53,7 +53,7 @@ func TestTotalBalanceIs_10_ShouldChangeCoin_T(t *testing.T) {
 }
 
 func TestTotalBalanceIs_7_ShouldChangeCoin_F_TW(t *testing.T) {
-	expectedResult := ", F, TW"
+	expectedResult := "F, TW"
 	v := NewVendingMachine()
 	v.totalCoins = 7
 
@@ -65,7 +65,7 @@ func TestTotalBalanceIs_7_ShouldChangeCoin_F_TW(t *testing.T) {
 }
 
 func TestTotalBalanceIs_4_ShouldChangeCoin_TW_TW(t *testing.T) {
-	expectedResult := ", TW, TW"
+	expectedResult := "TW, TW"
 	v := NewVendingMachine()
 	v.totalCoins = 4
 
@@ -77,9 +77,21 @@ func TestTotalBalanceIs_4_ShouldChangeCoin_TW_TW(t *testing.T) {
 }
 
 func TestTotalBalanceIs_25_ShouldChangeCoin_T_T_F(t *testing.T) {
-	expectedResult := ", T, T, F"
+	expectedResult := "T, T, F"
 	v := NewVendingMachine()
 	v.totalCoins = 25
+
+	actualResult := v.changeCoins()
+
+	if actualResult != expectedResult {
+		t.Errorf("%v but got %v", expectedResult, actualResult)
+	}
+}
+
+func TestTotalBalanceIs_27_ShouldChangeCoin_T_T_F_TW(t *testing.T) {
+	expectedResult := "T, T, F, TW"
+	v := NewVendingMachine()
+	v.totalCoins = 27
 
 	actualResult := v.changeCoins()
 
