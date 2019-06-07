@@ -42,10 +42,10 @@ func (v *VendingMachine) BuyDrink(drink string) string {
 	if v.totalCoins == 0 {
 		return drink
 	}
-	return drink + ", " + v.changeCoins()
+	return drink + ", " + v.ChangeCoins()
 }
 
-func (v *VendingMachine) changeCoins() string {
+func (v *VendingMachine) ChangeCoins() string {
 	var changeCoin string
 	coinsValue := [4]int{10, 5, 2, 1}
 	coinsText := [4]string{"T", "F", "TW", "O"}
@@ -59,4 +59,5 @@ func (v *VendingMachine) changeCoins() string {
 		}
 	}
 	return changeCoin
+
 }
