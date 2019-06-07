@@ -25,5 +25,9 @@ func main() {
 		fmt.Fprintf(w, "%v", v.BuyDrink(drink))
 	})
 
+	http.HandleFunc("/returncoins", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "%v", v.ChangeCoins())
+	})
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

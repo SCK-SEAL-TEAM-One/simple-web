@@ -1,119 +1,223 @@
 {
 	"info": {
-		"_postman_id": "7d296481-b5c1-459e-8ae3-6d0328f96ed3",
+		"_postman_id": "175609e3-4cf6-4b26-b3b5-033d72f1ef63",
 		"name": "vendingmachine",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "insert-coins with T",
-			"event": [
+			"name": "Buy drink Should get drink and exact change",
+			"description": "",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "be2328e6-2c10-44db-9878-cb17a61860f5",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Body Should contain 10\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"10\");",
-							"});",
-							"",
-							"postman.setNextRequest(\"buydrink with DW\")"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/x-www-form-urlencoded",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "insert-coins with T",
+					"event": [
 						{
-							"key": "coin",
-							"value": "T",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"id": "7a2cd228-3b50-4864-9239-0de43920fa72",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body Should contain 10\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"10\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"select drinking water should get DW, TW, O\")"
+								]
+							}
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/insertcoins",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"insertcoins"
-					]
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "coin",
+									"value": "T",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/insertcoins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insertcoins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "select drinking water should get DW, TW, O",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5f3ed64-ad17-48f3-9b18-5b729726a6d8",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body should contain DW\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"DW, TW, O\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "drink",
+									"value": "DW",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/buydrink",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"buydrink"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "buydrink with DW",
-			"event": [
+			"name": "Insert coin and select return money",
+			"description": "",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "c5f3ed64-ad17-48f3-9b18-5b729726a6d8",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Body should contain DW\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"DW, TW, O\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/x-www-form-urlencoded"
-					}
-				],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
+					"name": "insert-coins with T",
+					"event": [
 						{
-							"key": "drink",
-							"value": "DW",
-							"type": "text"
+							"listen": "test",
+							"script": {
+								"id": "b9173481-149a-453c-a836-84ff6bba46d5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body Should contain 10\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"10\");",
+									"});",
+									"",
+									"postman.setNextRequest(\"press return money should get T\")"
+								]
+							}
 						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/buydrink",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "8080",
-					"path": [
-						"buydrink"
-					]
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "coin",
+									"value": "T",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/insertcoins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"insertcoins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "press return money should get T",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9ce473a-6df6-4be9-8ecf-524ffd5275cb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"",
+									"pm.test(\"Body should contain T\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"T\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/returncoins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"returncoins"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
