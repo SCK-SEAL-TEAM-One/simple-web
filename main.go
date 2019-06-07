@@ -16,7 +16,8 @@ func main() {
 	http.HandleFunc("/insertcoins", func(w http.ResponseWriter, r *http.Request) {
 		coin := r.FormValue("coin")
 		v.InsertCoins(coin)
-		fmt.Fprintf(w, "%v", v.ShowTotalBalance())
+		w.Header().Set("Content-Type","application/json")
+		fmt.Fprintf(w, `{"totalBalance":%v}`, v.ShowTotalBalance())
 	})
 
 	http.HandleFunc("/buydrink", func(w http.ResponseWriter, r *http.Request) {

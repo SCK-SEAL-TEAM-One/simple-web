@@ -129,18 +129,26 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b9173481-149a-453c-a836-84ff6bba46d5",
+								"id": "75a538d1-71bb-48e6-91b3-c7cb95248ce6",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});",
 									"",
-									"pm.test(\"Body Should contain 10\", function () {",
-									"    pm.expect(pm.response.text()).to.include(\"10\");",
+									"pm.test(\"Content-Type is application/json\", function () {",
+									"    pm.response.to.be.header(\"Content-Type\",\"application/json\");",
 									"});",
 									"",
-									"postman.setNextRequest(\"press return money should get T\")"
+									"pm.test(\"totalBalance is 10\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.totalBalance).to.eql(10);",
+									"});",
+									"",
+									"postman.setNextRequest(\"press return money should get T\")",
+									"",
+									"",
+									""
 								]
 							}
 						}
